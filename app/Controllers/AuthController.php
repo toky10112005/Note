@@ -47,6 +47,6 @@ class AuthController extends BaseController
             'username' => $username,
         ]);
 
-        return redirect()->to('/ajout')->with('success', 'Utilisateur enregistré.');
+        return redirect()->to('/liste-etudiants')->with('success', 'Bienvenue !');
     }
 }

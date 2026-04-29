@@ -12,3 +12,4 @@ $routes->post('login', 'AuthController::authenticate');
 
 $routes->get('ajout', 'NotesController::ajout');
 $routes->post('ajout', 'NotesController::ajout');
+$routes->get('liste-etudiants', 'EtudiantController::liste');

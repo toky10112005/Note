@@ -30,7 +30,7 @@ class NotesController extends BaseController
         $matiereModel  = new MatiereModel();
         $noteModel     = new NoteModel();
 
-        if ($this->request->getMethod() === 'post') {
+        if (strtolower($this->request->getMethod()) === 'post') {
             $postedNotes = $this->request->getPost('notes');
             $etudiantId  = $this->request->getPost('etudiant_id');
 
