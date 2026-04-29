@@ -56,11 +56,16 @@ CREATE TABLE IF NOT EXISTS etudiant(
     prenom VARCHAR(255) NOT NULL,
     matricule VARCHAR(255) NOT NULL,
     id_semestre INT NOT NULL,
-    id_parcour INT NULL,
+    id_parcour INT DEFAULT NULL,
     KEY idx_etudiant_semestre (id_semestre),
     KEY idx_etudiant_parcour (id_parcour),
-    FOREIGN KEY (id_semestre) REFERENCES semestre(id)
-    ,FOREIGN KEY (id_parcour) REFERENCES parcour(id)
+    FOREIGN KEY (id_semestre) REFERENCES semestre(id),
+    FOREIGN KEY (id_parcour) REFERENCES parcour(id)
+);
+
+CREATE TABLE IF NOT EXISTS user(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL
 );
 
 INSERT INTO semestre (nom, credits) VALUES ('S3', 30);
