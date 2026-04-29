@@ -72,7 +72,8 @@ INSERT INTO parcour(nom,responsable) VALUES
 
 INSERT INTO parcour_matiere(id_parcour,matricule_matiere) VALUES
 (1,'INF204'),
-(1,'INF204'),
+(1,'INF205'),
+()
 
 INSERT INTO groupe(numeros, matricule_matiere, nom) VALUES 
 (1, 'INF204', 'Système d information géographique'),
