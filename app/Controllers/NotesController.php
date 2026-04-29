@@ -113,6 +113,8 @@ class NotesController extends BaseController
                 }
             }
         } else {
+
+       
             // GET with previous matricule (flashdata or query)
             $data['matricule'] = trim((string) ($session->getFlashdata('matricule') ?? $this->request->getGet('matricule') ?? ''));
             if ($data['matricule'] !== '') {

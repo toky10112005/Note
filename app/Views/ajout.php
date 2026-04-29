@@ -22,14 +22,14 @@
 <?php endif; ?>
 
 <h2>Rechercher un étudiant</h2>
-<form action="<?= site_url('ajout') ?>" method="post">
+<form action="<?= site_url('ajout') ?>" method="get">
     <?= csrf_field() ?>
     <label for="matricule">Matricule</label>
     <input type="text" id="matricule" name="matricule" value="<?= esc($matricule ?? '') ?>" required>
     <button type="submit">Afficher les matières</button>
 </form>
 
-<?php if (! empty($etudiant)): ?>
+<?php if (! empty($etudiant)) { ?>
     <hr>
     <h3>Étudiant</h3>
     <p>
@@ -84,7 +84,10 @@
 
         <button type="submit">Enregistrer</button>
     </form>
-<?php endif; ?>
+<?php }
+else{
+    echo "<p>Veuillez rechercher un étudiant pour afficher les matières.</p>";
+}?>
 
 </body>
 </html>
