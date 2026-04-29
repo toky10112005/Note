@@ -63,9 +63,21 @@ CREATE TABLE IF NOT EXISTS etudiant(
     FOREIGN KEY (id_parcour) REFERENCES parcour(id)
 );
 
+
 CREATE TABLE IF NOT EXISTS user(
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS note(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    etudiant_id INT NOT NULL,
+    matiere_id INT NOT NULL,
+    valeur DECIMAL(5,2) NOT NULL,
+    UNIQUE KEY uq_note_etudiant_matiere (etudiant_id, matiere_id),
+    KEY idx_note_matiere (matiere_id),
+    FOREIGN KEY (etudiant_id) REFERENCES etudiant(id) ON DELETE CASCADE,
+    FOREIGN KEY (matiere_id) REFERENCES matiere(id) ON DELETE CASCADE
 );
 
 INSERT INTO semestre (nom, credits) VALUES ('S3', 30);

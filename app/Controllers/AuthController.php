@@ -30,7 +30,16 @@ class AuthController extends BaseController
         $username = trim((string) $this->request->getPost('username'));
 
         $userModel = new UserModel();
-        $userId = $userModel->insert(['username' => $username], true);
+        try {
+            $userId = $userModel->insert(['username' => $username], true);
+        } catch (\Throwable $e) {
+            log_message('error', 'Login DB error: ' . $e->getMessage());
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('errors', ['db' => "Erreur base de données: table 'user' inexistante. Réimporte DataNote.sql (ou crée la table user)."]);
+        }
 
         $session = session();
         $session->set([
@@ -38,6 +47,6 @@ class AuthController extends BaseController
             'username' => $username,
         ]);
 
-        return redirect()->to('/')->with('success', 'Utilisateur enregistré.');
+        return redirect()->to('/ajout')->with('success', 'Utilisateur enregistré.');
     }
 }

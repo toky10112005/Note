@@ -21,14 +21,38 @@
 
 <?php if (! empty($username)): ?>
     <p>Connecté en tant que: <strong><?= esc($username) ?></strong></p>
-<?php else: ?>
-    <form action="<?= site_url('login') ?>" method="post">
-        <?= csrf_field() ?>
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" value="<?= old('username') ?>" required>
-        <button type="submit">Valider</button>
-    </form>
 <?php endif; ?>
+
+<form action="<?= site_url('login') ?>" method="post">
+    <?= csrf_field() ?>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" value="<?= old('username') ?>" required>
+    <button type="submit">Valider</button>
+</form>
+
+<script>
+    (function () {
+        const input = document.getElementById('username');
+        if (!input) return;
+
+        const storageKey = 'lastUsername';
+        const stored = (localStorage.getItem(storageKey) || '').trim();
+
+        if (input.value.trim() === '') {
+            input.value = stored !== '' ? stored : 'test';
+        }
+
+        const form = input.closest('form');
+        if (form) {
+            form.addEventListener('submit', function () {
+                const current = (input.value || '').trim();
+                if (current !== '') {
+                    localStorage.setItem(storageKey, current);
+                }
+            });
+        }
+    })();
+</script>
 
 </body>
 </html>
